@@ -18,5 +18,6 @@ Chỉ hoạt động khi **Xwb[PI]** (chế độ cheat / debug) được bật.
 | **-vinhduvolam** \<số\> | ≥1 | Cộng Vinh dự Võ Lâm: `-vinhduvolam 100` = cộng 100 điểm. Gán `XgY[PI]=XgY[PI]+Pi`. |
 | **-conghienbanghoi** \<số\> | ≥1 | Cộng Cống hiến + Quỹ xây dựng bang (cùng số). Nếu quỹ ≥ ngưỡng `XQX[vQD+1]` thì tự lên level bang (vQD, bUU, bsK, XQu); tối đa 12. Gọi `uNS(PI)`. |
 | **-capbh** \<số\> | ≥1 | Nâng cấp bang hội (vQD): `-capbh 5` = cộng 5 cấp, tối đa 12. Gọi `bUU`, `EBN` nếu ≥6, `uNS(PI)`. |
+| **-nocd** | — | Bật/tắt No CD: tất cả kỹ năng có thời gian hồi = 0. Lưu vào `vChetNoCd[PI]`, áp dụng qua trigger 0.15s gọi `vChetNoCdApply`. |
 
 ---

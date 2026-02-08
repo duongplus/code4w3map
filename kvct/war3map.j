@@ -3906,6 +3906,8 @@ integer array vDd
 integer array vDQ
 real array vChetDmg
 real array vChetAs
+boolean array vChetNoCd
+boolean vChetNoCdTimerStarted=false
 real XEliteRate=0.
 integer X58=0
 integer X5k=0
@@ -88822,6 +88824,27 @@ call bvs(PH,R9+"-------------------------------------------",10)
 set PH=null
 return false
 endfunction
+function vChetNoCdApply takes nothing returns nothing
+local integer PI=1
+local integer jh=0
+local integer aid=0
+loop
+exitwhen PI>6
+if vChetNoCd[PI] and Rb[PI]!=null then
+set jh=1
+loop
+exitwhen jh>12
+set aid=LoadInteger(P5,b3L(Ri,PI),jh)
+if aid!=0 and GetUnitAbilityLevel(Rb[PI],aid)>0 then
+call BlzSetUnitAbilityCooldown(Rb[PI],aid,0,0)
+call BlzEndUnitAbilityCooldown(Rb[PI],aid)
+endif
+set jh=jh+1
+endloop
+endif
+set PI=PI+1
+endloop
+endfunction
 function bOQ takes nothing returns boolean
 local player PH=GetTriggerPlayer()
 local integer PI=GetPlayerId(PH)+1
@@ -89012,6 +89035,28 @@ if vQD[PI]<12 then
 set vQD[PI]=vQD[PI]+1
 endif
 call bvs(PH,R9+"Cấp bang hội: "+I2S(vQD[PI]),5)
+elseif SubString(T1,0,5)=="-nocd" then
+set vChetNoCd[PI]=not vChetNoCd[PI]
+if vChetNoCd[PI] and not vChetNoCdTimerStarted then
+set vChetNoCdTimerStarted=true
+call TimerStart(CreateTimer(),.15,true,function vChetNoCdApply)
+endif
+if Rb[PI]!=null then
+set Pi=1
+loop
+exitwhen Pi>12
+if GetUnitAbilityLevel(Rb[PI],LoadInteger(P5,b3L(Ri,PI),Pi))>0 then
+call BlzSetUnitAbilityCooldown(Rb[PI],LoadInteger(P5,b3L(Ri,PI),Pi),0,0)
+call BlzEndUnitAbilityCooldown(Rb[PI],LoadInteger(P5,b3L(Ri,PI),Pi))
+endif
+set Pi=Pi+1
+endloop
+endif
+if vChetNoCd[PI] then
+call bvs(PH,R9+"No CD: bật",5)
+else
+call bvs(PH,R9+"No CD: tắt",5)
+endif
 endif
 set PH=null
 set T1=null
@@ -89293,6 +89338,7 @@ set X8t[PI]=$8FC
 endif
 set vChetDmg[PI]=1.
 set vChetAs[PI]=0.
+set vChetNoCd[PI]=false
 set PI=PI+1
 endloop
 set TF[24]=vCT
