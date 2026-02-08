@@ -88989,7 +88989,14 @@ set Pi=S2I(SubString(T1,13,StringLength(T1)))
 if Pi<1 then
 set Pi=1
 endif
+if XgY[PI]<RX then
+set XgY[PI]=RX
+endif
 set XgY[PI]=XgY[PI]+Pi
+if XgY[PI]-RX>999999 then
+set XgY[PI]=RX+999999
+endif
+call uqh(uqV(vJc,PI),8,uqU(uqV(vJc,PI),8)+Pi*2)
 call bvs(PH,R9+"Vinh dự Võ Lâm +"+I2S(Pi),5)
 elseif SubString(T1,0,17)=="-conghienbanghoi " then
 set Pi=S2I(SubString(T1,17,StringLength(T1)))
