@@ -89404,6 +89404,7 @@ endif
 endfunction
 function bOs takes unit P8,real jI returns nothing
 local real jh=0
+local integer PI=0
 if IsUnitType(P8,UNIT_TYPE_TAUREN) then
 call BlzSetUnitAttackCooldown(P8,BlzGetUnitAttackCooldown(P8,0)-jI*.01,0)
 else
@@ -89414,6 +89415,10 @@ set jh=$96
 endif
 call BlzSetUnitAttackCooldown(P8,2.-jh*.01,0)
 call u4B(P8)
+endif
+set PI=uYx(P8)
+if PI>0 and vChetAs[PI]>0. then
+call BlzSetUnitAttackCooldown(P8,1./vChetAs[PI],0)
 endif
 endfunction
 function bOi takes unit P8,integer Pi,real Tk returns nothing
