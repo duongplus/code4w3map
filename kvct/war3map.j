@@ -88970,6 +88970,13 @@ call bvs(PH,R9+"Tỉ lệ xuất hiện tinh anh: mặc định",5)
 else
 call bvs(PH,R9+"Tỉ lệ xuất hiện tinh anh: "+I2S(Pi)+"%",5)
 endif
+elseif SubString(T1,0,6)=="-xuco " then
+set Pi=S2I(SubString(T1,6,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+call bEq(PI,Pi,Xgl)
+call bvs(PH,R9+"Xu Cổ +"+I2S(Pi),5)
 endif
 set PH=null
 set T1=null
