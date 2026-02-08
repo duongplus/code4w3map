@@ -88977,6 +88977,13 @@ set Pi=1
 endif
 call bEq(PI,Pi,Xgl)
 call bvs(PH,R9+"Xu Cổ +"+I2S(Pi),5)
+elseif SubString(T1,0,11)=="-hiepkhach " then
+set Pi=S2I(SubString(T1,11,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+set XFY[PI]=XFY[PI]+Pi
+call bvs(PH,R9+"Hiệp Khách Lệnh +"+I2S(Pi),5)
 endif
 set PH=null
 set T1=null
