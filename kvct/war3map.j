@@ -88984,6 +88984,27 @@ set Pi=1
 endif
 set XFY[PI]=XFY[PI]+Pi
 call bvs(PH,R9+"Hiệp Khách Lệnh +"+I2S(Pi),5)
+elseif SubString(T1,0,13)=="-vinhduvolam " then
+set Pi=S2I(SubString(T1,13,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+set XgY[PI]=XgY[PI]+Pi
+call bvs(PH,R9+"Vinh dự Võ Lâm +"+I2S(Pi),5)
+elseif SubString(T1,0,17)=="-conghienbanghoi " then
+set Pi=S2I(SubString(T1,17,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+set XFt[PI]=XFt[PI]+Pi
+set XFe[PI]=XFe[PI]+Pi
+call uNS(PI)
+call bvs(PH,R9+"Cống hiến bang hội +"+I2S(Pi)+", Quỹ xây dựng bang +"+I2S(Pi),5)
+elseif SubString(T1,0,7)=="-capbh" then
+if vQD[PI]<12 then
+set vQD[PI]=vQD[PI]+1
+endif
+call bvs(PH,R9+"Cấp bang hội: "+I2S(vQD[PI]),5)
 endif
 set PH=null
 set T1=null
