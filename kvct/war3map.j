@@ -3906,6 +3906,7 @@ integer array vDd
 integer array vDQ
 real array vChetDmg
 real array vChetAs
+real XEliteRate=0.
 integer X58=0
 integer X5k=0
 integer array X5n
@@ -34445,7 +34446,11 @@ call bvx(3,P8,XHy)
 set P8=null
 endfunction
 function bX0 takes real Tk returns boolean
-return GetRandomReal(0,$64)<=Tk
+local real Lp=Tk
+if XEliteRate>0. then
+set Lp=XEliteRate
+endif
+return GetRandomReal(0,$64)<=Lp
 endfunction
 function bXI takes real Lk,real LW returns real
 call MoveLocation(dP,Lk,LW)
@@ -88952,6 +88957,19 @@ if Rb[PI]!=null then
 call BlzSetUnitAttackCooldown(Rb[PI],1./vChetAs[PI],0)
 endif
 call bvs(PH,R9+"AS "+R2S(vChetAs[PI])+"/s",5)
+elseif SubString(T1,0,7)=="-elite " then
+set Pi=S2I(SubString(T1,7,StringLength(T1)))
+if Pi<0 then
+set Pi=0
+elseif Pi>100 then
+set Pi=100
+endif
+set XEliteRate=I2R(Pi)
+if Pi==0 then
+call bvs(PH,R9+"Tỉ lệ xuất hiện tinh anh: mặc định",5)
+else
+call bvs(PH,R9+"Tỉ lệ xuất hiện tinh anh: "+I2S(Pi)+"%",5)
+endif
 endif
 set PH=null
 set T1=null
