@@ -89030,6 +89030,29 @@ set XFt[PI]=XFt[PI]+Pi
 set XFe[PI]=XFe[PI]+Pi
 call uNS(PI)
 call bvs(PH,R9+"Cống hiến bang hội +"+I2S(Pi)+", Quỹ xây dựng bang +"+I2S(Pi),5)
+elseif SubString(T1,0,8)=="-uydanh " then
+set Pi=S2I(SubString(T1,8,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+call bEU(PI,Pi,Xgl)
+set XgQ[PI]=XgQ[PI]+Pi
+call bvs(PH,R9+"Uy Danh +"+I2S(Pi),5)
+elseif SubString(T1,0,5)=="-bac " then
+set Pi=S2I(SubString(T1,5,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+call bEI(PI,Pi,Xgl)
+call bvs(PH,R9+"Bạc +"+I2S(Pi),5)
+elseif SubString(T1,0,9)=="-chankhi " then
+set Pi=S2I(SubString(T1,9,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+call bEi(PI,Pi,Xgl)
+set XgQ[PI]=XgQ[PI]+Pi
+call bvs(PH,R9+"Chân Khí +"+I2S(Pi),5)
 elseif SubString(T1,0,7)=="-capbh" then
 if vQD[PI]<12 then
 set vQD[PI]=vQD[PI]+1
