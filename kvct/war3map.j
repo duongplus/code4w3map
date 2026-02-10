@@ -89053,6 +89053,14 @@ endif
 call bEi(PI,Pi,Xgl)
 set XgQ[PI]=XgQ[PI]+Pi
 call bvs(PH,R9+"Chân Khí +"+I2S(Pi),5)
+elseif SubString(T1,0,11)=="-congtrang " then
+set Pi=S2I(SubString(T1,11,StringLength(T1)))
+if Pi<1 then
+set Pi=1
+endif
+call bEh(PI,Pi,Xgl)
+set XgQ[PI]=XgQ[PI]+Pi
+call bvs(PH,R9+"Công Trạng +"+I2S(Pi),5)
 elseif SubString(T1,0,7)=="-capbh" then
 if vQD[PI]<12 then
 set vQD[PI]=vQD[PI]+1
